@@ -1,0 +1,33 @@
+#include <stdio.h>
+int linear_search(int a[], int n, int key) {
+    for (int i = 0; i < n; ++i) if (a[i] == key) return i;
+    return -1;
+}
+int binary_search(int a[], int n, int key) {
+    int lo = 0, hi = n - 1;
+    while (lo <= hi) {
+        int mid = lo + (hi - lo) / 2;
+        if (a[mid] == key) return mid;
+        else if (a[mid] < key) lo = mid + 1;
+        else hi = mid - 1;
+    }
+    return -1;
+}
+int main() {
+    int n;
+    printf("Enter number of elements: ");
+    if (scanf("%d", &n) != 1 || n <= 0) return 0;
+    int a[n];
+    printf("Enter elements (for binary search: enter sorted ascending array):\n");
+    for (int i = 0; i < n; ++i) scanf("%d", &a[i]);
+    int key;
+    printf("Enter key to search: ");
+    scanf("%d", &key);
+    int li = linear_search(a, n, key);
+    if (li >= 0) printf("Linear search: found at index %d\n", li);
+    else printf("Linear search: not found\n");
+    int bi = binary_search(a, n, key);
+    if (bi >= 0) printf("Binary search: found at index %d\n", bi);
+    else printf("Binary search: not found (ensure array is sorted)\n");
+    return 0;
+}
