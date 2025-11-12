@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+int main() {
+    int n;
+    printf("Enter number of registration numbers: ");
+    scanf("%d", &n);
+    char regs[n][100];
+    for (int i = 0; i < n; i++) {
+        printf("Reg no %d: ", i + 1);
+        scanf("%s", regs[i]);
+    }
+char key[100];
+    printf("Enter registration number to search: ");
+    scanf("%s", key);
+    int found = 0;
+    for (int i = 0; i < n; i++) {
+        if (strcmp(regs[i], key) == 0) {
+            printf("Found at index %d (0-based)\n", i);
+            found = 1;
+            break;
+        }
+    }
+if (!found)
+        printf("Not found\n");
+    return 0;
+}
