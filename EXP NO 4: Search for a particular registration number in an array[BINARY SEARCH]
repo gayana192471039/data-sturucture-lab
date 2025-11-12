@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <string.h>
+int main() {
+    int n;
+    printf("Enter number of registration numbers: ");
+    scanf("%d", &n);
+    char regs[n][100];
+    printf("Enter registration numbers (sorted order):\n");
+    for (int i = 0; i < n; i++) {
+        printf("Reg no %d: ", i + 1);
+        scanf("%s", regs[i]);
+    }
+    char key[100];
+    printf("Enter registration number to search: ");
+    scanf("%s", key);
+    int low = 0, high = n - 1, found = 0;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        int cmp = strcmp(key, regs[mid]);
+        if (cmp == 0) {
+            printf("Found at index %d (0-based)\n", mid);
+            found = 1;
+            break;
+        } else if (cmp > 0)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+    if (!found)
+        printf("Not found\n");
+ return 0;
+}
