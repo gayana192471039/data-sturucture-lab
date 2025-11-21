@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+int main() {
+    int list1[50], list2[50], merged[100];
+    int n1, n2, i, j;
+
+    // Read first list
+    printf("Enter number of elements in List 1: ");
+    scanf("%d", &n1);
+
+    printf("Enter elements of List 1:\n");
+    for(i = 0; i < n1; i++) {
+        scanf("%d", &list1[i]);
+    }
+
+    // Read second list
+    printf("Enter number of elements in List 2: ");
+    scanf("%d", &n2);
+
+    printf("Enter elements of List 2:\n");
+    for(i = 0; i < n2; i++) {
+        scanf("%d", &list2[i]);
+    }
+
+    // Merge both lists
+    for(i = 0; i < n1; i++) {
+        merged[i] = list1[i];
+    }
+
+    for(j = 0; j < n2; j++) {
+        merged[n1 + j] = list2[j];
+    }
+
+    // Output merged list
+    printf("Merged List: ");
+    for(i = 0; i < n1 + n2; i++) {
+        printf("%d ", merged[i]);
+    }
+
+    return 0;
+}
