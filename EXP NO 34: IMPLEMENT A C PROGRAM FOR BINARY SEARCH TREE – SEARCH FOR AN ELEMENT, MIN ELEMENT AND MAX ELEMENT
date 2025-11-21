@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node {
+    int data;
+    struct Node* left;
+    struct Node* right;
+};
+
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+struct Node* insert(struct Node* root, int data) {
+    if (root == NULL)
+        return createNode(data);
+if (data < root->data)
+        root->left = insert(root->left, data);
+    else
+        root->right = insert(root->right, data);
+ return root;
+}
+struct Node* search(struct Node* root, int key) {
+    if (root == NULL || root->data == key)
+        return root;
+if (key < root->data)
+        return search(root->left, key);
+ return search(root->right, key);
+}
+int findMin(struct Node* root) {
+    while (root->left != NULL)
+        root = root->left;
+    return root->data;
+}
+int findMax(struct Node* root) {
+    while (root->right != NULL)
+        root = root->right;
+    return root->data;
+}
+int main() {
+    struct Node* root = NULL;
+    int key;    root = insert(root, 50);
+    root = insert(root, 30);
+    root = insert(root, 70);
+    root = insert(root, 20);
+    root = insert(root, 40);
+    printf("Enter key to search: ");
+    scanf("%d", &key);
+    if (search(root, key))
+        printf("Element found\n");
+    else
+        printf("Element not found\n");
+  printf("Min element = %d\n", findMin(root));
+    printf("Max element = %d\n", findMax(root));
+}
