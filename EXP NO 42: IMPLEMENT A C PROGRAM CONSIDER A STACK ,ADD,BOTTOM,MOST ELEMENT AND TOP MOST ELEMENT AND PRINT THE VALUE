@@ -1,0 +1,43 @@
+#include <stdio.h>
+#define MAX 50
+
+int stack[MAX];
+int top = -1;
+
+// Push operation
+void push(int value) {
+    if(top == MAX - 1)
+        printf("Stack Overflow\n");
+    else {
+        top++;
+        stack[top] = value;
+    }
+}
+
+// Function to print top and bottom elements
+void printTopAndBottom() {
+    if(top == -1) {
+        printf("Stack is empty\n");
+        return;
+    }
+
+    printf("Bottom-most element: %d\n", stack[0]);
+    printf("Top-most element: %d\n", stack[top]);
+}
+
+int main() {
+    int n, value, i;
+
+    printf("Enter number of elements to push: ");
+    scanf("%d", &n);
+
+    printf("Enter stack values:\n");
+    for(i = 0; i < n; i++) {
+        scanf("%d", &value);
+        push(value);
+    }
+
+    printTopAndBottom();
+
+    return 0;
+}
